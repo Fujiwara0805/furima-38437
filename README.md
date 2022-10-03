@@ -1,24 +1,68 @@
-# README
+# DB 設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users table
 
-Things you may want to cover:
+| Column             | Type                | Options                   |
+|--------------------|---------------------|---------------------------|
+| id                 | string              | null: false, unique: true |
+| name               | string              | null: false, unique: true |
+| email              | string              | null: false, unique: true |
+| encrypted_password | string              | null: false               |
+| name               | string              | null: false               |
+| introduction       | text                | null: false               |
+| address            | text                | null: false               |
+| date of birth      | text                | null: false               |
 
-* Ruby version
+### Association
 
-* System dependencies
+* has_many :items
+* has_many :comments
+* has_many :tags
 
-* Configuration
+## items table
 
-* Database creation
+| Column                              | Type       | Options                        |
+|-------------------------------------|------------|--------------------------------|
+| name                                | string     | null: false                    |
+| postage                             | text       | null: false                    |
+| shopping                            | text       | null: false                    |
+| price                               | text       | null: false                    |
+| region                              | text       | null: false                    |
+| saler_id                            | references | null: false, foreign_key: true |
+| buyer_id                            | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_many :comments
+- has_many :tags
 
-* Services (job queues, cache servers, search engines, etc.)
+## comments table
 
-* Deployment instructions
+| Column      | Type       | Options                        |
+|-------------|------------|--------------------------------|
+| content     | text       | null: false                    |
+| item        | references | null: false, foreign_key: true |
+| saler_id    | references | null: false, foreign_key: true |
+| buyer_id    | references | null: false, foreign_key: true |
 
-* ...
+
+### Association
+
+- belongs_to :item
+- belongs_to :user
+
+## tags table
+
+| Column      | Type       | Options                        |
+|-------------|------------|--------------------------------|
+| content     | text       | null: false                    |
+| item        | references | null: false, foreign_key: true |
+| saler_id    | references | null: false, foreign_key: true |
+| buyer_id    | references | null: false, foreign_key: true |
+
+
+### Association
+
+- belongs_to :item
+- belongs_to :user
