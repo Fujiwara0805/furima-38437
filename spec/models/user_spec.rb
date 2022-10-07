@@ -71,27 +71,27 @@ describe User, type: :model do
       it "first_name_kが空だと登録できない" do
       @user.first_name_k = ""
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name kana can't be blank", "First name kana is invalid")
+      expect(@user.errors.full_messages).to include("First name k can't be blank", "First name k is invalid")
       end
     it "last_name_kが空だと登録できない" do
       @user.last_name_k = ""
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name kana can't be blank", "Last name kana is invalid")
+      expect(@user.errors.full_messages).to include("Last name k can't be blank", "Last name k is invalid")
     end
     it "first_name_kがカタカナでないと登録できない" do
       @user.first_name_k = "tarou"      
       @user.valid?
-      expect(@user.errors.full_messages).to include("First name kana is invalid")
+      expect(@user.errors.full_messages).to include("First name k is invalid")
     end
     it "last_name_kがカタカナでないと登録できない" do
       @user.last_name_k = "yamada"      
       @user.valid?
-      expect(@user.errors.full_messages).to include("Last name kana is invalid")
+      expect(@user.errors.full_messages).to include("Last name k is invalid")
     end
     it "date_of_birthが空では登録できない" do
     @user.date_of_birth = ""
     @user.valid?
-    expect(@user.errors.full_messages).to include("Birthday can't be blank")
+    expect(@user.errors.full_messages).to include("Date of birth can't be blank")
     end
   end
 end
