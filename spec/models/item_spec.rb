@@ -50,19 +50,35 @@ describe Item, type: :model do
           @item.valid?
         expect(@item.errors.full_messages).to include("Delivery day can't be blank", "Delivery day is not a number")
         end
-        it 'それぞれのidで1が選択された場合は登録されない' do
+        it 'category_idに1が選択された場合は登録されない' do
           @item.category_id = '1'
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Category must be other than 1")
+        end
+        it 'condition_idに1が選択された場合は登録されない' do
           @item.condition_id = '1'
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Condition must be other than 1")
+        end
+        it 'delivery_fee_idに1が選択された場合は登録されない' do
           @item.delivery_fee_id = '1' 
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
+        end
+        it 'prefecture_idに1が選択された場合は登録されない' do
           @item.prefecture_id = '1'
+          @item.valid?
+          expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
+        end
+        it 'delivery_day_idに1が選択された場合は登録されない' do
           @item.delivery_day_id = '1'
           @item.valid?
-          expect(@item.errors.full_messages).to include("Category must be other than 1", "Condition must be other than 1", "Delivery fee must be other than 1", "Prefecture must be other than 1", "Delivery day must be other than 1")
+          expect(@item.errors.full_messages).to include("Delivery day must be other than 1")
         end
         it 'priceが空では登録されない' do
           @item.price = ""
           @item.valid?
-        expect(@item.errors.full_messages).to include("Price can't be blank", "Price is invalid", "Price is not a number")
+        expect(@item.errors.full_messages).to include("Price can't be blank","Price is not a number")
         end
         it 'priceが半角数字以外では登録できない' do
           @item.price = "１０００"
