@@ -66,9 +66,8 @@
 | house_number    | string     | null: false                    |
 | building        | string     |                                |
 | phone_number    | string     | null: false                    |
-| buy_record      | references | null: false, foreign_key: true |
+| order           | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :item
-- belongs_to :prefecture_id
+- belongs_to :order
