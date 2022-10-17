@@ -7,7 +7,7 @@ describe Order, type: :model do
   end
 
   describe '商品出品' do
-    context '商品出品がうまくいくとき' do
+    context '商品出品がうまくいくとき' do 
       it '全ての項目が入力されていれば出品ができる' do
         expect(@order).to be_valid
       end
