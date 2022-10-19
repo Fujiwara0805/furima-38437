@@ -10,95 +10,95 @@ describe Item, type: :model do
       end
     end
       context '商品出品がうまくいかないとき' do
-        it 'imageが空では登録されない' do
+        it '画像が空では登録されない' do
           @item.image = nil
           @item.valid?
-        expect(@item.errors.full_messages).to include("Image can't be blank")
+        expect(@item.errors.full_messages).to include("画像を入力してください")
         end
-        it 'nameが空では登録されない' do
+        it '商品名が空では登録されない' do
           @item.name = ''
           @item.valid?
-        expect(@item.errors.full_messages).to include("Name can't be blank")
+        expect(@item.errors.full_messages).to include("商品名を入力してください")
         end
-        it 'textが空では登録されない' do
+        it 'テキストが空では登録されない' do
           @item.text = ''
           @item.valid?
-        expect(@item.errors.full_messages).to include("Text can't be blank")
+        expect(@item.errors.full_messages).to include("テキストを入力してください")
         end
-        it 'category_idが空では登録されない' do
+        it 'カテゴリーが空では登録されない' do
           @item.category_id = nil
           @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include("カテゴリーを入力してください")
         end
-        it 'condition_idが空では登録されない' do
+        it '商品の状態が空では登録されない' do
           @item.condition_id = nil
           @item.valid?
-        expect(@item.errors.full_messages).to include("Condition can't be blank")
+        expect(@item.errors.full_messages).to include("商品の状態を入力してください", "商品の状態は数値で入力してください")
         end
-        it 'delivery_fee_idが空では登録されない' do
+        it '配送料金が空では登録されない' do
           @item.delivery_fee_id = nil
           @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery fee can't be blank")
+        expect(@item.errors.full_messages).to include("配送料金を入力してください", "配送料金は数値で入力してください")
         end
-        it 'prefecture_idが空では登録されない' do
+        it '発送元の地域が空では登録されない' do
           @item.prefecture_id = nil
           @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@item.errors.full_messages).to include("発送元の地域を入力してください", "発送元の地域は数値で入力してください")
         end
-        it 'delivery_day_idが空では登録されない' do
+        it '発送までの日数が空では登録されない' do
           @item.delivery_day_id = nil
           @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery day can't be blank")
+        expect(@item.errors.full_messages).to include("発送までの日数を入力してください", "発送までの日数は数値で入力してください")
         end
-        it 'category_idに1が選択された場合は登録されない' do
+        it 'カテゴリーに1が選択された場合は登録されない' do
           @item.category_id = '1'
           @item.valid?
-          expect(@item.errors.full_messages).to include("Category must be other than 1")
+          expect(@item.errors.full_messages).to include("カテゴリーは1以外の値にしてください")
         end
-        it 'condition_idに1が選択された場合は登録されない' do
+        it '商品の状態に1が選択された場合は登録されない' do
           @item.condition_id = '1'
           @item.valid?
-          expect(@item.errors.full_messages).to include("Condition must be other than 1")
+          expect(@item.errors.full_messages).to include("商品の状態は1以外の値にしてください")
         end
-        it 'delivery_fee_idに1が選択された場合は登録されない' do
+        it '配送料金に1が選択された場合は登録されない' do
           @item.delivery_fee_id = '1' 
           @item.valid?
-          expect(@item.errors.full_messages).to include("Delivery fee must be other than 1")
+          expect(@item.errors.full_messages).to include("配送料金は1以外の値にしてください")
         end
-        it 'prefecture_idに1が選択された場合は登録されない' do
+        it '発送元の地域に1が選択された場合は登録されない' do
           @item.prefecture_id = '1'
           @item.valid?
-          expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
+          expect(@item.errors.full_messages).to include("発送元の地域は1以外の値にしてください")
         end
-        it 'delivery_day_idに1が選択された場合は登録されない' do
+        it '発送までの日数に1が選択された場合は登録されない' do
           @item.delivery_day_id = '1'
           @item.valid?
-          expect(@item.errors.full_messages).to include("Delivery day must be other than 1")
+          expect(@item.errors.full_messages).to include("発送までの日数は1以外の値にしてください")
         end
-        it 'priceが空では登録されない' do
+        it '価格が空では登録されない' do
           @item.price = ""
           @item.valid?
-        expect(@item.errors.full_messages).to include("Price can't be blank","Price is not a number")
+        expect(@item.errors.full_messages).to include("価格を入力してください", "価格は数値で入力してください")
         end
-        it 'priceが半角数字以外では登録できない' do
+        it '価格が半角数字以外では登録できない' do
           @item.price = "１０００"
           @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include("価格は数値で入力してください")
         end
-        it 'priceが300より少ないと登録できない' do
+        it '価格が300より少ないと登録できない' do
           @item.price = "50"
           @item.valid?
-          expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+          expect(@item.errors.full_messages).to include("価格は300以上の値にしてください")
         end
-        it 'priceが9999999より大きいと登録できない' do
+        it '価格が9999999より大きいと登録できない' do
           @item.price = "10000000"
           @item.valid?
-          expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+          expect(@item.errors.full_messages).to include("価格は9999999以下の値にしてください")
         end
-        it 'userが紐付いていない場合は登録できない' do
+        it 'ユーザーが紐付いていない場合は登録できない' do
           @item.user = nil
           @item.valid?
-          expect(@item.errors.full_messages).to include("User must exist")
+          expect(@item.errors.full_messages).to include("Userを入力してください")
         end
       end
   end
